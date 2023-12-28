@@ -1,7 +1,7 @@
 import argparse
 import logging
 import sys
-from pyaoc.day import create_day
+from pyaoc.day_creation import create_day, create_day_force
 
 VERSION = "0.0.1"
 
@@ -11,13 +11,15 @@ def main():
 
     # Add the arguments
     parser.add_argument('--create-day', '-d', type=int, help = 'Create a new day')
+    parser.add_argument('--force', '-f', action='store_true', help = 'Force the creation of a new day')
     parser.add_argument('--version', action='version', version=f'pyaoc {VERSION}')
     
     # Parse the arguments
     args = parser.parse_args()
 
 
-    logging.basicConfig(filename="pyaoc.log", level=logging.INFO, format="%(asctime)s %(levelname)s: %(message)s")
+    
+    logging.basicConfig(filename="pyaoc.log", level=logging.WARNING, format="%(levelname)s: %(message)s")
 
     if len(sys.argv) == 1: # No arguments
         parser.print_help()
@@ -25,7 +27,11 @@ def main():
 
     if args.create_day:
         logging.info(f"Creating day {args.create_day}")
-        err = create_day(args.create_day)
+        if args.force:
+            logging.info("Force flag set")
+            err = create_day_force(args.create_day)
+        else:
+            err = create_day(args.create_day)
 
         match err:
             case 0:

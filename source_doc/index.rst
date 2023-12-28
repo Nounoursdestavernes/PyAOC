@@ -10,7 +10,7 @@ Welcome to PyAOC's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   ./day.rst
+   ./day_creation.rst
 
 
 

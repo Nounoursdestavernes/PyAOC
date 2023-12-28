@@ -1,13 +1,21 @@
 import os
 
 def create_day(day_number: int = 1) -> int:
-    """Create a new directory for a new day
-
-    Args:
-        day_number (int, optional): Day number. Defaults to 1.
+    """Create a new directory for a new day of Advent of Code.
     
-    Returns:
-        int: Error code
+    Returns an error code:
+        * 0: No error
+        * 1: Invalid day number
+        * 2: Directory already exists
+        * 3: Error creating part1 folder
+        * 4: Error creating part2 folder
+        * 5: Error creating inputs folder
+        * 6: Error creating benchmark folder
+
+    :param day_number int: Number of the day. Must be between 1 and 25.
+
+    :return: error code
+    :rtype: int
     """
     # Check if the day number is valid
     if day_number < 1 or day_number > 25:

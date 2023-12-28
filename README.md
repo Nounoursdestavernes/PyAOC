@@ -14,9 +14,8 @@ day{day_number}/
     ├── part2/
     │   └── part2.py        # Part 2 of the project
 ```
-You can create a day folder by running 
-
+You can create a day folder by running the following command:
 ```bash
-pyaoc {day_number}
+pyaoc --help
 ```
 

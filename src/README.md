@@ -62,6 +62,34 @@ pyaoc --run-day {day_number} --part {part_number}
 ```
 Where {part_number} is the number of the part you want to run.
 
+You can also run the current day folder by using the --run-current flag:
+```bash
+pyaoc --run-current
+```
 
+### Time your code
+PyAOC can time your code on the input file for a specific day.
 
+To do so, you have to be on the parent folder of the day folder you want to time. Then, run the following command:
+```bash
+pyaoc --run {day_number} --time
+```
+Where {day_number} is the number of the day you want to time.
 
+You can combine the --time flag with the --part flag to time only one part of the day:
+```bash
+pyaoc --run {day_number} --time --part {part_number}
+```
+Where {part_number} is the number of the part you want to time.
+
+### Print Version
+To print the version of PyAOC, run the following command:
+```bash
+pyaoc --version
+```
+
+### Print Help
+To print the help of PyAOC, run the following command:
+```bash
+pyaoc --help
+```

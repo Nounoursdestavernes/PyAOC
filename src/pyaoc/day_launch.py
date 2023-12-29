@@ -18,6 +18,10 @@ def run_specific_day(day_number: int = 1) -> int:
     :return: error
     :rtype: int
     """
+    if day_number < 1 or day_number > 25:
+        logging.error("Invalid day number : RUN_DAY must be between 1 and 25")
+        return 1
+
     dir_name = f"day{day_number:02d}"
     
     if not os.path.exists(dir_name):
@@ -55,6 +59,14 @@ def run_specific_part_specific_day(part_number: int = 1, day_number: int = 1) ->
     :return: error
     :rtype: int
     """
+    if part_number < 1 or part_number > 2:
+        logging.error("Invalid part number : PART must be between 1 and 2")
+        return 1
+
+    if day_number < 1 or day_number > 25:
+        logging.error("Invalid day number : DAY must be between 1 and 25")
+        return 1
+
     dir_name = f"day{day_number:02d}"
     
     if not os.path.exists(dir_name):

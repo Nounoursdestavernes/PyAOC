@@ -1,12 +1,13 @@
 import logging
 import os
+import time
 from importlib.util import spec_from_file_location, module_from_spec
 
 # Logger
 logger = logging.basicConfig(level=logging.WARNING, format='%(levelname)s %(message)s')
 
 
-def run_specific_day(day_number: int = 1) -> int:
+def run_specific_day(day_number: int = 1, timed: bool = False) -> int:
     """Run a specific day of Advent of Code.
 
     Returns an int that represents if an error occured:
@@ -36,17 +37,33 @@ def run_specific_day(day_number: int = 1) -> int:
     spec = spec_from_file_location("part1", "part1.py")
     part1 = module_from_spec(spec)
     spec.loader.exec_module(part1)
-    print(f"Part 1: {part1.solution(text_input)}")
+
+    if timed:
+        start_p1 = time.time()
+    res_p1 = part1.solution(text_input)
+    if timed:
+        end_p1 = time.time()
+    print(f"Part 1: {res_p1}")
+    if timed:
+        print(f"Part 1 execution time: {end_p1 - start_p1:.3f}s")
 
     # Part 2
     spec = spec_from_file_location("part2", "part2.py")
     part2 = module_from_spec(spec)
     spec.loader.exec_module(part2)
-    print(f"Part 2: {part2.solution(text_input)}")
+
+    if timed:
+        start_p2 = time.time()
+    res_p2 = part2.solution(text_input)
+    if timed:
+        end_p2 = time.time()
+    print(f"Part 2: {res_p2}")
+    if timed:
+        print(f"Part 2 execution time: {end_p2 - start_p2:.3f}s")
     
     return 0
 
-def run_specific_part_specific_day(part_number: int = 1, day_number: int = 1) -> int:
+def run_specific_part_specific_day(part_number: int = 1, day_number: int = 1, timed: bool = False) -> int:
     """Run a specific part of a specific day of Advent of Code.
 
     Returns an int that represents if an error occured:
@@ -80,7 +97,15 @@ def run_specific_part_specific_day(part_number: int = 1, day_number: int = 1) ->
     spec = spec_from_file_location(f"part{part_number}", f"part{part_number}.py")
     part = module_from_spec(spec)
     spec.loader.exec_module(part)
-    print(f"Part {part_number}: {part.solution(text_input)}")
+
+    if timed:
+        start = time.time()
+    res = part.solution(text_input)
+    if timed:
+        end = time.time()
+    print(f"Part {part_number}: {res}")
+    if timed:
+        print(f"Part {part_number} execution time: {end - start:.3f}s")
     
     return 0
 

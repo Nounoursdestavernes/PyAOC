@@ -1,5 +1,11 @@
 import os
 import shutil
+from jinja2 import Environment, PackageLoader
+
+#Jinja2 environment
+env = Environment(
+    loader=PackageLoader('pyaoc', '.'),
+)
 
 def create_day(day_number: int = 1) -> int:
     """Create a new directory for a new day of Advent of Code.
@@ -57,6 +63,9 @@ def create_day(day_number: int = 1) -> int:
 
     # Create files
 
+    template = env.get_template("part.jinja2")
+
+
     # input and sample files
     os.chdir("inputs")
     with open("input.txt", "w") as f:
@@ -68,13 +77,13 @@ def create_day(day_number: int = 1) -> int:
     # part1 file
     os.chdir("part1")
     with open("part1.py", "w") as f:
-        pass
+        f.write(template.render(day_number=day_number, part_number="1"))
     os.chdir("..")
 
     # part2 file
     os.chdir("part2")
     with open("part2.py", "w") as f:
-        pass
+        f.write(template.render(day_number=day_number, part_number="2"))
     os.chdir("..")
 
     # return to the root directory
@@ -135,6 +144,8 @@ def create_day_force(day_number: int = 1) -> int:
 
     # Create files
 
+    template = env.get_template("part.jinja2")
+
     # input and sample files
     os.chdir("inputs")
     with open("input.txt", "w") as f:
@@ -146,13 +157,13 @@ def create_day_force(day_number: int = 1) -> int:
     # part1 file
     os.chdir("part1")
     with open("part1.py", "w") as f:
-        pass
+        f.write(template.render(day_number=day_number, part_number="1"))
     os.chdir("..")
 
     # part2 file
     os.chdir("part2")
     with open("part2.py", "w") as f:
-        pass
+        f.write(template.render(day_number=day_number, part_number="2"))
     os.chdir("..")
 
     # return to the root directory

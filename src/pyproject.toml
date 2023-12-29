@@ -19,6 +19,13 @@ classifiers = [
     'Programming Language :: Python',
     'Operating System :: Unix',
 ]
+dependencies = [
+    "Jinja2 >= 3.1.2"
+]
+
+[tool.setuptools.package-data]
+pyaoc = ["*.jinja2"]
+
 
 [project.scripts]
 # example for cli script :  pyaoc = "pyaoc.pyaoc:pyaoc"

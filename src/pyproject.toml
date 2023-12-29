@@ -6,8 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "pyaoc"
 version = "0.0.1"
 license = {file = "LICENSE"}
-
-description = "Python Advent of Code utilities"
+description = "Python Advent of Code package"
 authors = [{name = "Aurélien TRONCY"}]
 requires-python = ">=3.9"
 readme = "README.md"
@@ -26,6 +25,9 @@ dependencies = [
 [tool.setuptools.package-data]
 pyaoc = ["*.jinja2"]
 
+[project.urls]
+Homepage = "https://github.com/Nounoursdestavernes/PyAOC"
+Repository = "https://github.com/Nounoursdestavernes/PyAOC.git"
 
 [project.scripts]
 # example for cli script :  pyaoc = "pyaoc.pyaoc:pyaoc"

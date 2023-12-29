@@ -17,8 +17,6 @@ def main():
     args = parser.parse_args()
 
 
-    
-
     if len(sys.argv) == 1: # No arguments
         parser.print_help()
         return 0
@@ -29,25 +27,14 @@ def main():
         else:
             err = create_day(args.create_day)
 
-        match err:
-            case 0:
-                print("Day created successfully")
-            case 1:
-                print("Invalid day number : CREATE_DAY must be between 1 and 25")
-            case 2:
-                print("Directory already exists")
-            case 3:
-                print("Error creating part1 folder")
-            case 4:
-                print("Error creating part2 folder")
-            case 5:
-                print("Error creating inputs folder")
-            case 6:
-                print("Error creating benchmark folder")
-            case _:
-                print("Unknown error")
-                print(f"Error code: {err}")
-    
+        if err:
+            return 1
+        else:
+            print(f"Day {args.create_day} created")
+
+
+
+
     return 0
                 
 

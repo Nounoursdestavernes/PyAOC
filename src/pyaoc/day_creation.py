@@ -1,3 +1,4 @@
+import logging
 import os
 import shutil
 from jinja2 import Environment, PackageLoader
@@ -7,59 +8,66 @@ env = Environment(
     loader=PackageLoader('pyaoc', '.'),
 )
 
+# Logger
+logger = logging.basicConfig(level=logging.WARNING, format='%(levelname)s %(message)s')
+
 def create_day(day_number: int = 1) -> int:
     """Create a new directory for a new day of Advent of Code.
-    
-    Returns an error code:
-        * 0: No error
-        * 1: Invalid day number
-        * 2: Directory already exists
-        * 3: Error creating part1 folder
-        * 4: Error creating part2 folder
-        * 5: Error creating inputs folder
-        * 6: Error creating benchmark folder
 
+    Returns an int that represents if an error occured:
+        * 0: No error
+        * 1: Error
+    
     :param day_number int: Number of the day. Must be between 1 and 25.
 
-    :return: error code
+    :return: error
     :rtype: int
     """
     # Check if the day number is valid
     if day_number < 1 or day_number > 25:
-        return 1 # Error code 1
+        logging.error("Invalid day number : CREATE_DAY must be between 1 and 25")
+        return 1
     
     # Create the directory
     dir_name = f"day{day_number:02d}"
 
-    # Check if the directory already exists
-    if os.path.exists(dir_name):
-        return 2 # Error code 2
-    
-    # Create folders
 
+    # Create folders
+    if os.path.exists(dir_name):
+        logging.error(f"Directory {dir_name} already exists")
+        return 1
+    
     os.mkdir(dir_name)
     os.chdir(dir_name)
 
     # Part1 folder
     if os.path.exists("part1"):
-        return 3
+        logging.error("part1 folder already exists")
+        return 1
+    
     os.mkdir("part1")
+
 
     # Part2 folder
     if os.path.exists("part2"):
-        return 4
+        logging.error("part2 folder already exists")
+        return 1
+    
     os.mkdir("part2")
 
     # Input folder
     if os.path.exists("inputs"):
-        return 5
+        logging.error("inputs folder already exists")
+        return 1
+    
     os.mkdir("inputs")
 
     # Benchmark folder
     if os.path.exists("benchmark"):
-        return 6
+        logging.error("benchmark folder already exists")
+        return 1
+    
     os.mkdir("benchmark")
-
 
     # Create files
 
@@ -89,25 +97,26 @@ def create_day(day_number: int = 1) -> int:
     # return to the root directory
     os.chdir("..")
 
-    return 0 # No error
+    return 0
 
 
 
 def create_day_force(day_number: int = 1) -> int:
     """Create a new directory for a new day of Advent of Code. If the directory already exists, delete it and create a new one.
     
-    Returns an error code:
+    Returns an int that represents if an error occured:
         * 0: No error
-        * 1: Invalid day number
-
+        * 1: Error
+    
     :param day_number int: Number of the day. Must be between 1 and 25.
 
-    :return: error code
+    :return: error
     :rtype: int
     """
     # Check if the day number is valid
     if day_number < 1 or day_number > 25:
-        return 1 # Error code 1
+        logging.error("Invalid day number : CREATE_DAY must be between 1 and 25")
+        return 1
     
     # Create the directory
     dir_name = f"day{day_number:02d}"

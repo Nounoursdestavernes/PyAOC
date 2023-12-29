@@ -110,4 +110,53 @@ def run_specific_part_specific_day(part_number: int = 1, day_number: int = 1, ti
     return 0
 
 
+def run_current(timed: bool = False) -> int:
+    """Run the current day of Advent of Code.
 
+    Returns an int that represents if an error occured:
+        * 0: No error
+        * 1: Error
+
+    :return: error
+    :rtype: int
+    """
+    # Get the current day
+    current_path = os.getcwd()
+    current_day = os.path.basename(current_path)
+    day_number = current_day[3:]
+    if current_day[:3] != 'day' and not day_number.isdigit():
+        logging.error("Invalid current day folder")
+        return 1
+    
+    day_number = int(day_number)
+    os.chdir("..")
+    err = run_specific_day(day_number, timed)
+    os.chdir(current_path)
+    return err
+
+def run_current_specific_part(part_number: int = 1, timed: bool = False) -> int:
+    """Run a specific part of the current day of Advent of Code.
+
+    Returns an int that represents if an error occured:
+        * 0: No error
+        * 1: Error
+
+    :param part_number int: Number of the part. Corresponding file must exist.
+
+    :return: error
+    :rtype: int
+    """
+    # Get the current day
+    current_path = os.getcwd()
+    current_day = os.path.basename(current_path)
+    day_number = current_day[3:]
+    if current_day[:3] != 'day' and not day_number.isdigit():
+        logging.error("Invalid current day folder")
+        return 1
+    
+    day_number = int(day_number)
+
+    os.chdir("..")
+    err = run_specific_part_specific_day(part_number, day_number, timed)
+    os.chdir(current_path)
+    return err

@@ -13,12 +13,13 @@ def main():
     parser = argparse.ArgumentParser()
 
     # Add the arguments
-    parser.add_argument('--create-day', '-d', type=int, help = 'Create a new day')
+    parser.add_argument('--create-day', '-d', type=int, metavar="DAY", help = 'Create a new day')
     parser.add_argument('--force', '-f', action='store_true', help = 'Force the creation of a new day')
-    parser.add_argument('--run', '-r', type=int, help='Run a specific day')
+    parser.add_argument('--run', '-r', type=int, metavar="DAY", help='Run a specific day')
     parser.add_argument('--run-current', '-rc', action='store_true', help='Run the current day folder')
-    parser.add_argument('--part', '-p', type=int, help='Run a specific part of a specific day')
+    parser.add_argument('--part', '-p', type=int, metavar="PART", help='Run a specific part of a specific day')
     parser.add_argument('--time', '-t', action='store_true', help='Print the execution time of each part')
+    parser.add_argument('--benchmark', '-b', type=int, nargs=2, metavar=("DAY", "ITERATIONS"), help='Run a specific day with a specific number of iterations')
     parser.add_argument('--version', action='version', version=f'pyaoc {VERSION}')
     
     # Parse the arguments

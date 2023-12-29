@@ -1,6 +1,7 @@
 import argparse
 import sys
 from pyaoc.day_creation import create_day, create_day_force
+from pyaoc.day_launch import run_specific_day, run_specific_part_specific_day
 
 VERSION = "0.0.1"
 
@@ -11,6 +12,8 @@ def main():
     # Add the arguments
     parser.add_argument('--create-day', '-d', type=int, help = 'Create a new day')
     parser.add_argument('--force', '-f', action='store_true', help = 'Force the creation of a new day')
+    parser.add_argument('--run', '-r', type=int, help='Run a specific day')
+    parser.add_argument('--part', '-p', type=int, help='Run a specific part of a specific day')
     parser.add_argument('--version', action='version', version=f'pyaoc {VERSION}')
     
     # Parse the arguments
@@ -31,16 +34,19 @@ def main():
             return 1
         else:
             print(f"Day {args.create_day} created")
-
+            return 0
+    
+    if args.run:
+        if args.part:
+            err = run_specific_part_specific_day(args.part, args.run)
+        else:
+            err = run_specific_day(args.run)
+            
+        if err:
+            return 1
+        else:
+            return 0
 
 
 
     return 0
-                
-
-
-if __name__ == "__main__":
-    main()
-
-
-

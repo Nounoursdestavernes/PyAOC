@@ -11,6 +11,7 @@ Welcome to PyAOC's documentation!
    :caption: Contents:
 
    ./day_creation.rst
+   ./day_launch.rst
 
 
 

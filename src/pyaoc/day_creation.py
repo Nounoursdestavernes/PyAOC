@@ -112,15 +112,6 @@ def create_day_force(day_number: int = 1) -> int:
     os.mkdir(dir_name)
     os.chdir(dir_name)
 
-    # Part1 folder
-    if os.path.exists("part1"):
-        shutil.rmtree("part1")
-    os.mkdir("part1")
-    # Part2 folder
-    if os.path.exists("part2"):
-        shutil.rmtree("part2")
-    os.mkdir("part2")
-
     # Input folder
     if os.path.exists("inputs"):
         shutil.rmtree("inputs")
@@ -145,16 +136,12 @@ def create_day_force(day_number: int = 1) -> int:
     os.chdir("..")
 
     # part1 file
-    os.chdir("part1")
     with open("part1.py", "w") as f:
         f.write(template.render(day_number=day_number, part_number="1"))
-    os.chdir("..")
 
     # part2 file
-    os.chdir("part2")
     with open("part2.py", "w") as f:
         f.write(template.render(day_number=day_number, part_number="2"))
-    os.chdir("..")
 
     # return to the root directory
     os.chdir("..")

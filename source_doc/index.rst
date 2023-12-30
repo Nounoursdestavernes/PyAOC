@@ -13,7 +13,7 @@ Welcome to PyAOC's documentation!
    ./day_benchmark.rst
    ./day_creation.rst
    ./day_launch.rst
-   ./day_subject.rest
+   ./day_subject.rst
    ./day_year.rst
 
 

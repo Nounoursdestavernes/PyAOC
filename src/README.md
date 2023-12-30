@@ -104,6 +104,16 @@ This is usefull for option like autosubmit, autodownload of the input, ...
 
 For the moment you have to use this option in each command.
 
+### Generate README
+PyAOC can auto-generate the readme of your project.
+
+To do so, you have to be on the parent folder of all the days folders. Then run the following command:
+```bash
+pyaoc --readme
+```
+
+It will auto-generate the README with benchmark.
+
 ### Print Version
 To print the version of PyAOC, run the following command:
 ```bash

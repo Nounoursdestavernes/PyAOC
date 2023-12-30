@@ -1,3 +1,4 @@
+# This file contains functions to run a day of Advent of Code
 import logging
 import os
 import time
@@ -14,8 +15,9 @@ def run_specific_day(day_number: int = 1, timed: bool = False) -> int:
         * 0: No error
         * 1: Error
 
-    :param day_number int: Number of the day. Corresponding directory must exist.
-
+    :param int day_number: Number of the day. Corresponding directory must exist.
+    :param bool timed: The run is timed.
+    
     :return: error
     :rtype: int
     """
@@ -45,7 +47,7 @@ def run_specific_day(day_number: int = 1, timed: bool = False) -> int:
         end_p1 = time.time()
     print(f"Part 1: {res_p1}")
     if timed:
-        print(f"Part 1 execution time: {end_p1 - start_p1:.3f}s")
+        print(f"Part 1 execution time: {end_p1 - start_p1:.5f}s")
 
     # Part 2
     spec = spec_from_file_location("part2", "part2.py")
@@ -59,7 +61,9 @@ def run_specific_day(day_number: int = 1, timed: bool = False) -> int:
         end_p2 = time.time()
     print(f"Part 2: {res_p2}")
     if timed:
-        print(f"Part 2 execution time: {end_p2 - start_p2:.3f}s")
+        print(f"Part 2 execution time: {end_p2 - start_p2:.5f}s")
+
+    os.chdir("..")
     
     return 0
 
@@ -70,8 +74,8 @@ def run_specific_part_specific_day(part_number: int = 1, day_number: int = 1, ti
         * 0: No error
         * 1: Error
 
-    :param part_number int: Number of the part. Corresponding file must exist.
-    :param day_number int: Number of the day. Corresponding directory must exist.
+    :param int part_number: Number of the part. Corresponding file must exist.
+    :param int day_number: Number of the day. Corresponding directory must exist.
 
     :return: error
     :rtype: int
@@ -105,8 +109,10 @@ def run_specific_part_specific_day(part_number: int = 1, day_number: int = 1, ti
         end = time.time()
     print(f"Part {part_number}: {res}")
     if timed:
-        print(f"Part {part_number} execution time: {end - start:.3f}s")
+        print(f"Part {part_number} execution time: {end - start:.5f}s")
     
+    os.chdir("..")
+
     return 0
 
 
@@ -117,6 +123,8 @@ def run_current(timed: bool = False) -> int:
         * 0: No error
         * 1: Error
 
+    :param bool timed: The run is timed.
+        
     :return: error
     :rtype: int
     """
@@ -141,7 +149,8 @@ def run_current_specific_part(part_number: int = 1, timed: bool = False) -> int:
         * 0: No error
         * 1: Error
 
-    :param part_number int: Number of the part. Corresponding file must exist.
+    :param int part_number: Number of the part. Corresponding file must exist.
+    :param bool timed: The run is timed.
 
     :return: error
     :rtype: int

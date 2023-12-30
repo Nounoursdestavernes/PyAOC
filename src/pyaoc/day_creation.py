@@ -1,3 +1,4 @@
+# This file contains functions to create a new day for Advent of Code
 import logging
 import os
 import shutil
@@ -18,7 +19,7 @@ def create_day(day_number: int = 1) -> int:
         * 0: No error
         * 1: Error
     
-    :param day_number int: Number of the day. Must be between 1 and 25.
+    :param int day_number: Number of the day. Must be between 1 and 25.
 
     :return: error
     :rtype: int
@@ -89,7 +90,7 @@ def create_day_force(day_number: int = 1) -> int:
         * 0: No error
         * 1: Error
     
-    :param day_number int: Number of the day. Must be between 1 and 25.
+    :param int day_number: Number of the day. Must be between 1 and 25.
 
     :return: error
     :rtype: int

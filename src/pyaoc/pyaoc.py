@@ -3,6 +3,7 @@ import logging
 import sys
 from pyaoc.day_creation import create_day, create_day_force
 from pyaoc.day_launch import run_specific_day, run_specific_part_specific_day, run_current, run_current_specific_part
+from pyaoc.day_benchmark import benchmark_specific_day
 
 VERSION = "0.0.1"
 
@@ -76,5 +77,8 @@ def main():
         if err:
             return 1 
 
-
+    if args.benchmark:
+        err = benchmark_specific_day(args.benchmark[0], args.benchmark[1])
+        if err:
+            return 1
     return 0

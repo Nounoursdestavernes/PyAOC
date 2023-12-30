@@ -12,6 +12,7 @@ Welcome to PyAOC's documentation!
 
    ./day_creation.rst
    ./day_launch.rst
+   ./day_benchmark.rst
 
 
 

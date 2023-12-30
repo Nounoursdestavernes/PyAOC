@@ -82,6 +82,15 @@ pyaoc --run {day_number} --time --part {part_number}
 ```
 Where {part_number} is the number of the part you want to time.
 
+### Benchmark
+PyAOC can benchmark your code on the input file for a specific day.
+
+To do so, you have to be on the parent folder of the day folder you want to time. Then, run the following command:
+```bash
+pyaoc --benchmark {day_number} {iterations}
+```
+Where {day_number} is the number of the day you want to time and {iterations} the number of iterations you want.
+
 ### Print Version
 To print the version of PyAOC, run the following command:
 ```bash

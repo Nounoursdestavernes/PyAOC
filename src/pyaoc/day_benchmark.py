@@ -56,7 +56,7 @@ def benchmark_specific_day(day_number: int = 1, iterations: int = 1000) -> int:
         f.write(f"Python version: {platform.python_version()}\n")
         f.write(f"Day: {day_number}\n")
         f.write(f"Part 1: {time_p1:.5f}s over {iterations} iterations\n")
-        f.write(f"Part 2: {time_p2:.5f}s over {iterations} iterations")
+        f.write(f"Part 2: {time_p2:.5f}s over {iterations} iterations\n")
 
     print(open("benchmark/benchmark.txt", "r").read())
 

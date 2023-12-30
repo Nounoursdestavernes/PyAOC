@@ -59,7 +59,7 @@ def generate_readme(year: int = 2023) -> int:
         benchmark = open(os.path.join(day, "benchmark", "benchmark.txt"), "r").read()
         if len(benchmark) == 0:
             benchmark = "Not benchmarked\n"
-        data.append((number, name, benchmark))
+        data.append((day[3:], name, benchmark))
 
     template = env.get_template("README.jinja2")
 

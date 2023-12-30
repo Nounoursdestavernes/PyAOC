@@ -40,13 +40,13 @@ def benchmark_specific_day(day_number: int = 1, iterations: int = 1000) -> int:
     part1 = module_from_spec(spec)
     spec.loader.exec_module(part1)
 
-    time_p1 = timeit.timeit(lambda: part1.solution(text_input), number=iterations)
+    time_p1 = timeit.timeit(lambda: part1.solution(text_input), number=iterations) / iterations
     
     spec = spec_from_file_location("part2", "part2.py")
     part2 = module_from_spec(spec)
     spec.loader.exec_module(part2)
 
-    time_p2 = timeit.timeit(lambda: part2.solution(text_input), number=iterations)
+    time_p2 = timeit.timeit(lambda: part2.solution(text_input), number=iterations) / iterations
 
 
     with open("benchmark/benchmark.txt", "w") as f:
@@ -55,8 +55,8 @@ def benchmark_specific_day(day_number: int = 1, iterations: int = 1000) -> int:
         f.write(f"Bit architecture: {platform.architecture()[0]}\n")
         f.write(f"Python version: {platform.python_version()}\n")
         f.write(f"Day: {day_number}\n")
-        f.write(f"Part 1: {time_p1:.5f}s over {iterations} iterations\n")
-        f.write(f"Part 2: {time_p2:.5f}s over {iterations} iterations\n")
+        f.write(f"Part 1: {time_p1:.5f}s mean time for {iterations} iterations\n")
+        f.write(f"Part 2: {time_p2:.5f}s mean time for {iterations} iterations\n")
 
     print(open("benchmark/benchmark.txt", "r").read())
 

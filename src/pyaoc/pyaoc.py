@@ -5,6 +5,7 @@ from pyaoc.day_benchmark import benchmark_specific_day
 from pyaoc.day_creation import create_day, create_day_force
 from pyaoc.day_launch import run_specific_day, run_specific_part_specific_day, run_current, run_current_specific_part
 from pyaoc.day_year import get_last_aoc_year
+from pyaoc.readme_generation import generate_readme
 
 VERSION = "0.0.1"
 
@@ -23,6 +24,7 @@ def main():
     parser.add_argument('--time', '-t', action='store_true', help='Print the execution time of each part')
     parser.add_argument('--benchmark', '-b', type=int, nargs=2, metavar=("DAY", "ITERATIONS"), help='Run a specific day with a specific number of iterations')
     parser.add_argument('--year', '-y', type=int, metavar="YEAR", help="Override the current year for the command")
+    parser.add_argument('--readme', action="store_true", help="Generate the README file")
     parser.add_argument('--version', action='version', version=f'pyaoc {VERSION}')
     
     # Parse the arguments
@@ -86,5 +88,11 @@ def main():
     year = get_last_aoc_year()
     if args.year:
         year = args.year
-    
+
+    if args.readme:
+        err = generate_readme()
+        if err:
+            return 1
+        else:
+            print("README generated")
     return 0

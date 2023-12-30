@@ -15,6 +15,7 @@ Welcome to PyAOC's documentation!
    ./day_launch.rst
    ./day_subject.rst
    ./day_year.rst
+   ./readme_generation
 
 
 

@@ -1,0 +1,11 @@
+# AdventOfCode{{year}}
+[Advent of Code](https://adventofcode.com/{{year}}/about) is an Advent calendar of small programming puzzles
+
+{% for day in days %}
+## [Day {{day[0]}} : {{day[1]}}](https://adventofcode.com/{{year}}/day/{{day[0]|int}})
+
+[problem](https://adventofcode.com/{{year}}/day/{{day[0]|int}}) / [solution](./day{{day[0]}}/)
+
+```text
+{{day[2]}}```
+{% endfor %}

@@ -63,6 +63,8 @@ def generate_readme(year: int = 2023) -> int:
 
     template = env.get_template("README.jinja2")
 
+    data.sort()
+
     with open("README", "w") as f:
         f.write(template.render(days = data, year=year))
 

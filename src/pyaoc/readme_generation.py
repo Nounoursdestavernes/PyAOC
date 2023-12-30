@@ -65,7 +65,7 @@ def generate_readme(year: int = 2023) -> int:
 
     data.sort()
 
-    with open("README", "w") as f:
+    with open("README.md", "w") as f:
         f.write(template.render(days = data, year=year))
 
     return 0

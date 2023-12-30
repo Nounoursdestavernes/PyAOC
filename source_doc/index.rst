@@ -10,10 +10,12 @@ Welcome to PyAOC's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   ./day_benchmark.rst
    ./day_creation.rst
    ./day_launch.rst
-   ./day_benchmark.rst
+   ./day_subject.rest
    ./day_year.rst
+
 
 
 

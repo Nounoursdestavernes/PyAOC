@@ -19,7 +19,8 @@ classifiers = [
     'Operating System :: Unix',
 ]
 dependencies = [
-    "Jinja2 >= 3.1.2"
+    "Jinja2 >= 3.1.2",
+    "requests >= 2.31.0",
 ]
 
 [tool.setuptools.package-data]

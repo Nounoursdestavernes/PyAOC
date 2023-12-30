@@ -91,6 +91,19 @@ pyaoc --benchmark {day_number} {iterations}
 ```
 Where {day_number} is the number of the day you want to time and {iterations} the number of iterations you want.
 
+### Override year
+By default, the year parameter is set to the current year if you are in december and the last year otherwise. This is to match the last possible Advent Of Code.
+
+If you want to override the default value you have to add the --year option
+```bash
+pyaoc --year {year}
+```
+Where {year} is the number of the year you want. 
+
+This is usefull for option like autosubmit, autodownload of the input, ...
+
+For the moment you have to use this option in each command.
+
 ### Print Version
 To print the version of PyAOC, run the following command:
 ```bash

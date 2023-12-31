@@ -4,12 +4,13 @@ import sys
 from pyaoc.day_benchmark import benchmark_specific_day
 from pyaoc.day_creation import create_day, create_day_force
 from pyaoc.day_launch import run_specific_day, run_specific_part_specific_day, run_current, run_current_specific_part
+from pyaoc.day_subject import get_input
 from pyaoc.day_year import get_last_aoc_year
 from pyaoc.readme_generation import generate_readme
 
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 
-logger = logging.basicConfig(level=logging.WARNING, format='%(levelname)s %(message)s')
+logging.basicConfig(level=logging.WARNING, format='%(levelname)s %(message)s')
 
 def main():
     # Create the argument parser
@@ -25,6 +26,7 @@ def main():
     parser.add_argument('--benchmark', '-b', type=int, nargs=2, metavar=("DAY", "ITERATIONS"), help='Run a specific day with a specific number of iterations')
     parser.add_argument('--year', '-y', type=int, metavar="YEAR", help="Override the current year for the command")
     parser.add_argument('--readme', action="store_true", help="Generate the README file")
+    parser.add_argument('--download-input', '-di', type=int, metavar="DAY", help="Download the input of a specific day")
     parser.add_argument('--version', action='version', version=f'pyaoc {VERSION}')
     
     # Parse the arguments
@@ -61,6 +63,13 @@ def main():
             return 1
         else:
             print(f"Day {args.create_day} created")
+
+    if args.download_input:
+        err = get_input(args.download_input)
+        if err:
+            return 1
+        else:
+            print(f"Input of day {args.download_input} downloaded")
     
     if args.run:
         if args.part:

@@ -125,3 +125,16 @@ To print the help of PyAOC, run the following command:
 ```bash
 pyaoc --help
 ```
+
+## List of advanced features
+To use the advanced features, you have to configure PyAOC. To do so, you have to create a secret.txt file in the root folder of your project. This file must contain the cookie of your session. You can find it in the cookie of your browser when you are logged in Advent of Code.
+
+**IMPORTANT !!! Please do NOT push your secret.txt file on internet !**
+
+### Download input
+PyAOC can download the input file for a specific day.
+```bash
+pyaoc --download-input {day_number}
+```
+Where {day_number} is the number of the day you want to download input.
+

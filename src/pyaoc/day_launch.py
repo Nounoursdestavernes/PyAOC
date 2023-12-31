@@ -5,7 +5,7 @@ import time
 from importlib.util import spec_from_file_location, module_from_spec
 
 # Logger
-logger = logging.basicConfig(level=logging.WARNING, format='%(levelname)s %(message)s')
+logging.basicConfig(level=logging.WARNING, format='%(levelname)s %(message)s')
 
 
 def run_specific_day(day_number: int = 1, timed: bool = False) -> int:

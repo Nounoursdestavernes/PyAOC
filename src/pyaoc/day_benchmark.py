@@ -7,7 +7,7 @@ from importlib.util import spec_from_file_location, module_from_spec
 
 
 # Logger
-logger = logging.basicConfig(level=logging.WARNING, format='%(levelname)s %(message)s')
+logging.basicConfig(level=logging.WARNING, format='%(levelname)s %(message)s')
 
 def benchmark_specific_day(day_number: int = 1, iterations: int = 1000) -> int:
     """Benchmark a specific day of Advent of Code.

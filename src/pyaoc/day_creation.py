@@ -10,7 +10,7 @@ env = Environment(
 )
 
 # Logger
-logger = logging.basicConfig(level=logging.WARNING, format='%(levelname)s %(message)s')
+logging.basicConfig(level=logging.WARNING, format='%(levelname)s %(message)s')
 
 def create_day(day_number: int = 1) -> int:
     """Create a new directory for a new day of Advent of Code.

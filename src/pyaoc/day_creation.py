@@ -48,6 +48,7 @@ def create_day(day_number: int = 1) -> int:
     # Input folder
     if os.path.exists("inputs"):
         logging.error("inputs folder already exists")
+        os.chdir("..")
         return 1
     
     os.mkdir("inputs")
@@ -55,6 +56,7 @@ def create_day(day_number: int = 1) -> int:
     # Benchmark folder
     if os.path.exists("benchmark"):
         logging.error("benchmark folder already exists")
+        os.chdir("..")
         return 1
     
     os.mkdir("benchmark")

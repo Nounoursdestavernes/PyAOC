@@ -18,6 +18,16 @@ def get_day_name(day_number: int = 1, year_number: int = 2023) -> str:
     :return: day name
     :rtype: str
     """
+
+    if type(day_number) != int:
+        logging.error("day_number must be an int")
+        sys.exit(1)
+    
+    if type(year_number) != int:
+        logging.error("year_number must be an int")
+        sys.exit(1)
+    
+
     url = f"https://adventofcode.com/{year_number}/day/{day_number}"
 
     req = requests.get(url)
@@ -26,8 +36,8 @@ def get_day_name(day_number: int = 1, year_number: int = 2023) -> str:
         logging.error(f"Error {req.status_code} while getting day name")
         sys.exit(1)
 
-    full_title = re.findall("<h2>---.*Day \d+:.*---</h2>", req.text)[0] # To get the full day title
-    title = re.findall(":\s.*\s", full_title)[0][2:-1]
+    full_title = re.findall("<h2>---.*Day [0-9]+:.*---</h2>", req.text)[0] # To get the full day title
+    title = re.findall(":[ \t\n\r\f\v].*[ \t\n\r\f\v]", full_title)[0][2:-1]
 
     return title
 
@@ -45,14 +55,20 @@ def get_input(day_number: int = 1, year_number: int = 2023) -> int:
     :rtype: int
     """
 
-    cookie = open("secret.txt", 'r').read().strip()
-    url = f"https://adventofcode.com/{year_number}/day/{day_number}/input"
-
-    req = requests.get(url, cookies={"session": cookie})
-
-    if req.status_code != 200:
-        logging.error(f"Error {req.status_code} while getting input")
+    if type(day_number) != int:
+        logging.error("day_number must be an int")
         return 1
+    
+    if type(year_number) != int:
+        logging.error("year_number must be an int")
+        return 1
+
+    if not os.path.exists("secret.txt"):
+        logging.error("secret.txt does not exist")
+        return 1
+    
+    cookie = open("secret.txt", 'r').read().strip()
+
     
     folder_name = f"day{day_number:02d}"
     if not os.path.exists(folder_name):
@@ -63,17 +79,29 @@ def get_input(day_number: int = 1, year_number: int = 2023) -> int:
 
     if not os.path.exists("inputs"):
         logging.error(f"Directory {folder_name}/inputs does not exist")
+        os.chdir("..")
         return 1
     
-    if not os.path.exists("inputs/input.txt"):
+    os.chdir("inputs")
+    
+    if not os.path.exists("input.txt"):
         logging.error(f"File {folder_name}/inputs/input.txt does not exist")
+        os.chdir("..") # Go back to day folder
+        os.chdir("..") # Go back to src folder
         return 1
     
+    url = f"https://adventofcode.com/{year_number}/day/{day_number}/input"
+    req = requests.get(url, cookies={"session": cookie})
 
-    with open("inputs/input.txt", "w") as f:
+    if req.status_code != 200:
+        logging.error(f"Error {req.status_code} while getting input")
+        return 1
+    
+    with open("input.txt", "w") as f:
         f.write(req.text)
 
-    os.chdir("..")
+    os.chdir("..") # Go back to day folder
+    os.chdir("..") # Go back to src folder
     
     return 0
 

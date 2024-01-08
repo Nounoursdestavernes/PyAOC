@@ -25,12 +25,12 @@ def create_day(day_number: int = 1) -> int:
     :rtype: int
     """
     if type(day_number) != int:
-        logging.error("Invalid day number : CREATE_DAY must be an integer")
+        logging.error("Invalid day number : day_number must be an integer")
         return 1
 
     # Check if the day number is valid
     if day_number < 1 or day_number > 25:
-        logging.error("Invalid day number : CREATE_DAY must be between 1 and 25")
+        logging.error("Invalid day number : day_number must be between 1 and 25")
         return 1
     
     # Create the directory
@@ -102,12 +102,12 @@ def create_day_force(day_number: int = 1) -> int:
     :rtype: int
     """
     if type(day_number) != int:
-        logging.error("Invalid day number : CREATE_DAY must be an integer")
+        logging.error("Invalid day number : day_number must be an integer")
         return 1
 
     # Check if the day number is valid
     if day_number < 1 or day_number > 25:
-        logging.error("Invalid day number : CREATE_DAY must be between 1 and 25")
+        logging.error("Invalid day number : day_number must be between 1 and 25")
         return 1
     
     # Create the directory

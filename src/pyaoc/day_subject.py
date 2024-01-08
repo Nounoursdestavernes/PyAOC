@@ -20,11 +20,11 @@ def get_day_name(day_number: int = 1, year_number: int = 2023) -> str:
     """
 
     if type(day_number) != int:
-        logging.error("day_number must be an int")
+        logging.error("Invalid day number : day_number must be an int")
         sys.exit(1)
     
     if type(year_number) != int:
-        logging.error("year_number must be an int")
+        logging.error("Invalid year number : year_number must be an int")
         sys.exit(1)
     
 
@@ -56,11 +56,11 @@ def get_input(day_number: int = 1, year_number: int = 2023) -> int:
     """
 
     if type(day_number) != int:
-        logging.error("day_number must be an int")
+        logging.error("Invalid day number : day_number must be an int")
         return 1
     
     if type(year_number) != int:
-        logging.error("year_number must be an int")
+        logging.error("Invalid year number : year_number must be an int")
         return 1
 
     if not os.path.exists("secret.txt"):

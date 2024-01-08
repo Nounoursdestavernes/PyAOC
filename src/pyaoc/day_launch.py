@@ -2,6 +2,7 @@
 import logging
 import os
 import time
+from pyaoc.check_day_structure import check_day
 from importlib.util import spec_from_file_location, module_from_spec
 
 # Logger
@@ -21,19 +22,26 @@ def run_specific_day(day_number: int = 1, timed: bool = False) -> int:
     :return: error
     :rtype: int
     """
-    if day_number < 1 or day_number > 25:
-        logging.error("Invalid day number : RUN_DAY must be between 1 and 25")
+    if type(day_number) != int:
+        logging.error("Invalid day number : day_number must be an int")
+        return 1
+    
+    if type(timed) != bool:
+        logging.error("Invalid timed : timed must be an bool")
         return 1
 
-    dir_name = f"day{day_number:02d}"
-    
-    if not os.path.exists(dir_name):
-        logging.error(f"Directory {dir_name} does not exist")
+    if day_number < 1 or day_number > 25:
+        logging.error("Invalid day number : day_number must be between 1 and 25")
         return 1
     
+    if check_day(day_number) == 1:
+        return 1
+    
+    dir_name = f"day{day_number:02d}"
+
     os.chdir(dir_name)
 
-    text_input = open("inputs/input.txt", "r").read()
+    text_input = open(os.path.join("inputs", "input.txt"), "r").read()
 
     # Part 1
     spec = spec_from_file_location("part1", "part1.py")
@@ -80,23 +88,34 @@ def run_specific_part_specific_day(part_number: int = 1, day_number: int = 1, ti
     :return: error
     :rtype: int
     """
-    if part_number < 1 or part_number > 2:
-        logging.error("Invalid part number : PART must be between 1 and 2")
+    if type(day_number) != int:
+        logging.error("Invalid day number : day_number must be an int")
+        return 1
+    
+    if type(part_number) != int:
+        logging.error("Invalid part number : part_number must be an int")
+        return 1
+    
+    if type(timed) != bool:
+        logging.error("Invalid timed : timed must be an bool")
         return 1
 
     if day_number < 1 or day_number > 25:
-        logging.error("Invalid day number : DAY must be between 1 and 25")
+        logging.error("Invalid day number : day_number must be between 1 and 25")
         return 1
 
-    dir_name = f"day{day_number:02d}"
-    
-    if not os.path.exists(dir_name):
-        logging.error(f"Directory {dir_name} does not exist")
+    if part_number < 1 or part_number > 2:
+        logging.error("Invalid part number : part_number must be between 1 and 2")
         return 1
     
+    if check_day(day_number) == 1:
+        return 1
+    
+    dir_name = f"day{day_number:02d}"
+
     os.chdir(dir_name)
 
-    text_input = open("inputs/input.txt", "r").read()
+    text_input = open(os.path.join("inputs", "input.txt"), "r").read()
 
     spec = spec_from_file_location(f"part{part_number}", f"part{part_number}.py")
     part = module_from_spec(spec)
@@ -128,6 +147,10 @@ def run_current(timed: bool = False) -> int:
     :return: error
     :rtype: int
     """
+    if type(timed) != bool:
+        logging.error("Invalid timed : timed must be an bool")
+        return 1
+
     # Get the current day
     current_path = os.getcwd()
     current_day = os.path.basename(current_path)
@@ -137,6 +160,11 @@ def run_current(timed: bool = False) -> int:
         return 1
     
     day_number = int(day_number)
+
+    if day_number < 1 or day_number > 25:
+        logging.error("Invalid day number : day_number must be between 1 and 25")
+        return 1
+
     os.chdir("..")
     err = run_specific_day(day_number, timed)
     os.chdir(current_path)
@@ -155,6 +183,18 @@ def run_current_specific_part(part_number: int = 1, timed: bool = False) -> int:
     :return: error
     :rtype: int
     """
+    if type(part_number) != int:
+        logging.error("Invalid part number : part_number must be an int")
+        return 1
+    
+    if type(timed) != bool:
+        logging.error("Invalid timed : timed must be an bool")
+        return 1
+    
+    if part_number < 1 or part_number > 2:
+        logging.error("Invalid part number : part_number must be between 1 and 2")
+        return 1
+    
     # Get the current day
     current_path = os.getcwd()
     current_day = os.path.basename(current_path)
@@ -164,6 +204,10 @@ def run_current_specific_part(part_number: int = 1, timed: bool = False) -> int:
         return 1
     
     day_number = int(day_number)
+
+    if day_number < 1 or day_number > 25:
+        logging.error("Invalid day number : day_number must be between 1 and 25")
+        return 1
 
     os.chdir("..")
     err = run_specific_part_specific_day(part_number, day_number, timed)

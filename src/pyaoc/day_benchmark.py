@@ -22,6 +22,14 @@ def benchmark_specific_day(day_number: int = 1, iterations: int = 1000) -> int:
     :return: error
     :rtype: int      
     """
+    if type(day_number) != int:
+        logging.error("Invalid day number : RUN_DAY must be an int")
+        return 1
+    
+    if type(iterations) != int:
+        logging.error("Invalid number of iterations : iterations must be an int")
+        return 1
+
     if day_number < 1 or day_number > 25:
         logging.error("Invalid day number : RUN_DAY must be between 1 and 25")
         return 1
@@ -34,7 +42,44 @@ def benchmark_specific_day(day_number: int = 1, iterations: int = 1000) -> int:
     
     os.chdir(dir_name)
 
-    text_input = open("inputs/input.txt", "r").read()
+    if not os.path.exists("inputs"):
+        logging.error(f"Directory {dir_name}/inputs does not exist")
+        os.chdir("..")
+        return 1
+
+    os.chdir("inputs")
+    
+    if not os.path.exists("input.txt"):
+        logging.error(f"File {dir_name}/inputs/input.txt does not exist")
+        os.chdir("..") # Go back to day folder
+        os.chdir("..") # Go back to src folder
+        return 1
+
+    text_input = open("input.txt", "r").read()
+    os.chdir("..")
+
+    if not os.path.exists("part1.py"):
+        logging.error("File part1.py does not exist")
+        os.chdir("..")
+        return 1
+    
+
+    if not os.path.exists("part2.py"):
+        logging.error("File part2.py does not exist")
+        os.chdir("..")
+        return 1
+    
+
+    if not os.path.exists("benchmark"):
+        logging.error(f"Folder {dir_name}/benchmark does not exist")
+        os.chdir("..") # Go back to src folder
+        return 1
+    
+
+    if not os.path.exists(os.path.join("benchmark", "benchmark.txt")):
+        logging.error(f"File {dir_name}/benchmark/benchmark.txt does not exist")
+        os.chdir("..") # Go back to src folder
+        return 1
 
     spec = spec_from_file_location("part1", "part1.py")
     part1 = module_from_spec(spec)
@@ -49,7 +94,7 @@ def benchmark_specific_day(day_number: int = 1, iterations: int = 1000) -> int:
     time_p2 = timeit.timeit(lambda: part2.solution(text_input), number=iterations) / iterations
 
 
-    with open("benchmark/benchmark.txt", "w") as f:
+    with open(os.path.join("benchmark","benchmark.txt"), "w") as f:
         f.write(f"System: {platform.system()}\n")
         f.write(f"Processor: {platform.processor()}\n")
         f.write(f"Bit architecture: {platform.architecture()[0]}\n")
@@ -58,7 +103,7 @@ def benchmark_specific_day(day_number: int = 1, iterations: int = 1000) -> int:
         f.write(f"Part 1: {time_p1:.5f}s mean time for {iterations} iterations\n")
         f.write(f"Part 2: {time_p2:.5f}s mean time for {iterations} iterations\n")
 
-    print(open("benchmark/benchmark.txt", "r").read())
+    print(open(os.path.join("benchmark","benchmark.txt"), "r").read())
 
     os.chdir("..")
 

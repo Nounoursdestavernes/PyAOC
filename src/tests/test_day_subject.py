@@ -36,31 +36,26 @@ def test_get_day_name_not_int():
         get_day_name("a", 2020)
     assert pytest_wrapped_e.type == SystemExit
 
-def test_get_day_name_not_int2():
     with pytest.raises(SystemExit) as pytest_wrapped_e:
         get_day_name(1, "a")
     assert pytest_wrapped_e.type == SystemExit
 
-def test_get_day_name_not_int3():
     with pytest.raises(SystemExit) as pytest_wrapped_e:
         get_day_name("a", "a")
     assert pytest_wrapped_e.type == SystemExit
 
-def test_get_day_name_not_int4():
     with pytest.raises(SystemExit) as pytest_wrapped_e:
         get_day_name("a")
     assert pytest_wrapped_e.type == SystemExit
 
-def test_get_day_name_not_int5():
     with pytest.raises(SystemExit) as pytest_wrapped_e:
         get_day_name(year_number="a")
     assert pytest_wrapped_e.type == SystemExit
 
-def test_get_day_name_not_int6():
     with pytest.raises(SystemExit) as pytest_wrapped_e:
         get_day_name(day_number="a")
     assert pytest_wrapped_e.type == SystemExit
-
+    
 # Tests for get_input
     
 def test_get_input_no_secret():

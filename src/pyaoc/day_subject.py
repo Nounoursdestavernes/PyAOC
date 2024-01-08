@@ -70,22 +70,22 @@ def get_input(day_number: int = 1, year_number: int = 2023) -> int:
     cookie = open("secret.txt", 'r').read().strip()
 
     
-    folder_name = f"day{day_number:02d}"
-    if not os.path.exists(folder_name):
-        logging.error(f"Directory {folder_name} does not exist")
+    dir_name = f"day{day_number:02d}"
+    if not os.path.exists(dir_name):
+        logging.error(f"Directory {dir_name} does not exist")
         return 1
     
-    os.chdir(folder_name)
+    os.chdir(dir_name)
 
     if not os.path.exists("inputs"):
-        logging.error(f"Directory {folder_name}/inputs does not exist")
+        logging.error(f"Directory {dir_name}/inputs does not exist")
         os.chdir("..")
         return 1
     
     os.chdir("inputs")
     
     if not os.path.exists("input.txt"):
-        logging.error(f"File {folder_name}/inputs/input.txt does not exist")
+        logging.error(f"File {dir_name}/inputs/input.txt does not exist")
         os.chdir("..") # Go back to day folder
         os.chdir("..") # Go back to src folder
         return 1

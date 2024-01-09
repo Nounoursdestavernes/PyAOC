@@ -34,7 +34,7 @@ def run_specific_day(day_number: int = 1, timed: bool = False) -> int:
         logging.error("Invalid day number : day_number must be between 1 and 25")
         return 1
     
-    if check_day_structure(day_number) == 1:
+    if not check_day_structure(day_number):
         return 1
     
     dir_name = f"day{day_number:02d}"
@@ -108,7 +108,7 @@ def run_specific_part_specific_day(part_number: int = 1, day_number: int = 1, ti
         logging.error("Invalid part number : part_number must be between 1 and 2")
         return 1
     
-    if check_day_structure(day_number) == 1:
+    if not check_day_structure(day_number):
         return 1
     
     dir_name = f"day{day_number:02d}"

@@ -37,7 +37,7 @@ def benchmark_specific_day(day_number: int = 1, iterations: int = 1000) -> int:
 
     dir_name = f"day{day_number:02d}"
 
-    if check_day_structure(day_number) == 1:
+    if not check_day_structure(day_number):
         return 1
     
     os.chdir(dir_name)

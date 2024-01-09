@@ -2,7 +2,7 @@
 import logging
 import os
 import time
-from pyaoc.check_day_structure import check_day
+from pyaoc.check_day import check_day_structure, check_name_folder
 from importlib.util import spec_from_file_location, module_from_spec
 
 # Logger
@@ -34,7 +34,7 @@ def run_specific_day(day_number: int = 1, timed: bool = False) -> int:
         logging.error("Invalid day number : day_number must be between 1 and 25")
         return 1
     
-    if check_day(day_number) == 1:
+    if check_day_structure(day_number) == 1:
         return 1
     
     dir_name = f"day{day_number:02d}"
@@ -108,7 +108,7 @@ def run_specific_part_specific_day(part_number: int = 1, day_number: int = 1, ti
         logging.error("Invalid part number : part_number must be between 1 and 2")
         return 1
     
-    if check_day(day_number) == 1:
+    if check_day_structure(day_number) == 1:
         return 1
     
     dir_name = f"day{day_number:02d}"
@@ -154,16 +154,13 @@ def run_current(timed: bool = False) -> int:
     # Get the current day
     current_path = os.getcwd()
     current_day = os.path.basename(current_path)
-    day_number = current_day[3:]
-    if current_day[:3] != 'day' and not day_number.isdigit():
-        logging.error("Invalid current day folder")
+    
+    if not check_name_folder(current_day):
         return 1
     
+    day_number = current_day[3:]
     day_number = int(day_number)
 
-    if day_number < 1 or day_number > 25:
-        logging.error("Invalid day number : day_number must be between 1 and 25")
-        return 1
 
     os.chdir("..")
     err = run_specific_day(day_number, timed)
@@ -198,16 +195,12 @@ def run_current_specific_part(part_number: int = 1, timed: bool = False) -> int:
     # Get the current day
     current_path = os.getcwd()
     current_day = os.path.basename(current_path)
-    day_number = current_day[3:]
-    if current_day[:3] != 'day' and not day_number.isdigit():
-        logging.error("Invalid current day folder")
+    
+    if not check_name_folder(current_day):
         return 1
     
+    day_number = current_day[3:]
     day_number = int(day_number)
-
-    if day_number < 1 or day_number > 25:
-        logging.error("Invalid day number : day_number must be between 1 and 25")
-        return 1
 
     os.chdir("..")
     err = run_specific_part_specific_day(part_number, day_number, timed)

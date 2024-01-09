@@ -6,7 +6,7 @@ import os
 logging.basicConfig(level=logging.WARNING, format='%(levelname)s %(message)s')
 
 
-def check_day(day_number: int = 1) -> bool:
+def check_day_structure(day_number: int = 1) -> bool:
     """Check the structure of a day folder
 
     Return a bool that represents if the structure is correct
@@ -75,3 +75,27 @@ def check_day(day_number: int = 1) -> bool:
     os.chdir("..")
 
     return 0
+
+def check_name_folder(name: str) -> bool:
+    """Check that the folder have a name in following format : day{day_number}
+
+    Where {day_number} is a number between 01 and 25.
+
+    :param int name: Name of the folder.
+
+    :return: valide
+    :rtype: bool
+    """
+    if len(name) != 5:
+        return False
+    
+    day_number = name[3:]
+    if name[:3] != 'day' and not day_number.isdigit():
+        return False
+    
+    day_number = int(day_number)
+
+    if day_number < 1 or day_number > 25:
+        return False
+    
+    return True

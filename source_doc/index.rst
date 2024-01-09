@@ -16,7 +16,7 @@ Welcome to PyAOC's documentation!
    ./day_subject.rst
    ./day_year.rst
    ./readme_generation
-   ./check_day_structure
+   ./check_day
 
 
 

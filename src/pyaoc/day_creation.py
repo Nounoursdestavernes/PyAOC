@@ -30,7 +30,7 @@ def create_day(day_number: int = 1) -> None:
 
     # Create folders
     if os.path.exists(dir_name):
-        return sys.exit(f"Directory {dir_name} already exists")
+        sys.exit(f"Directory {dir_name} already exists")
     
     os.mkdir(dir_name)
     os.chdir(dir_name)
@@ -38,14 +38,14 @@ def create_day(day_number: int = 1) -> None:
     # Input folder
     if os.path.exists("inputs"):
         os.chdir("..")
-        return sys.exit("inputs folder already exists")
+        sys.exit("inputs folder already exists")
     
     os.mkdir("inputs")
 
     # Benchmark folder
     if os.path.exists("benchmark"):
         os.chdir("..")
-        return sys.exit("benchmark folder already exists")
+        sys.exit("benchmark folder already exists")
     
     os.mkdir("benchmark")
 

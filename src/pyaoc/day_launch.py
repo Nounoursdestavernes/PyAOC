@@ -154,8 +154,8 @@ def run_current_specific_part(part_number: int = 1, timed: bool = False) -> None
     :param int part_number: Number of the part. Corresponding file must exist.
     :param bool timed: The run is timed.
 
-    :return: error
-    :rtype: int
+    :return: None
+    :rtype: None
     """
     check_part_number(part_number) # Check if part_number is valid
 

@@ -49,6 +49,9 @@ def create_day(day_number: int = 1) -> None:
     
     os.mkdir("benchmark")
 
+    with open(os.path.join("benchmark", "benchmark.txt"), "w") as f:
+        pass
+
     # Create files
 
     template = env.get_template("part.jinja2")
@@ -113,6 +116,9 @@ def create_day_force(day_number: int = 1) -> None:
     if os.path.exists("benchmark"):
         shutil.rmtree("benchmark")
     os.mkdir("benchmark")
+
+    with open(os.path.join("benchmark", "benchmark.txt"), "w") as f:
+        pass
 
 
     # Create files

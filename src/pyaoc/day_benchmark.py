@@ -1,44 +1,31 @@
 # This file contains functions to benchmark a day of Advent of Code
-import logging
 import os
 import platform
 import timeit
 from pyaoc.check_day import check_day_structure
+from pyaoc.check_parameters import check_day_number, check_iterations
 from importlib.util import spec_from_file_location, module_from_spec
 
-
-# Logger
-logging.basicConfig(level=logging.WARNING, format='%(levelname)s %(message)s')
 
 def benchmark_specific_day(day_number: int = 1, iterations: int = 1000) -> int:
     """Benchmark a specific day of Advent of Code.
 
-    Return an int that represents if an error occured:
-        * 0: No error
-        * 1: Error
+    Returns None if the benchmark is successful, else sys.exit.
 
     :param int day_number: Number of the day. Corresponding directory must exist.
     :param int iterations: Number of iterations.
 
-    :return: error
-    :rtype: int      
+    :return: None
+    :rtype: None    
     """
-    if type(day_number) != int:
-        logging.error("Invalid day number : day_number must be an int")
-        return 1
-    
-    if type(iterations) != int:
-        logging.error("Invalid number of iterations : iterations must be an int")
-        return 1
 
-    if day_number < 1 or day_number > 25:
-        logging.error("Invalid day number : day_number must be between 1 and 25")
-        return 1
+    check_iterations(iterations) # Check if iterations is valid
+
+    check_day_number(day_number) # Check if day_number is valid
 
     dir_name = f"day{day_number:02d}"
 
-    if not check_day_structure(day_number):
-        return 1
+    check_day_structure(day_number) # Check if the day folder structure is valid
     
     os.chdir(dir_name)
 
@@ -70,4 +57,4 @@ def benchmark_specific_day(day_number: int = 1, iterations: int = 1000) -> int:
 
     os.chdir("..")
 
-    return 0
+    return None

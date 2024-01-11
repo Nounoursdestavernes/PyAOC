@@ -1,6 +1,7 @@
 import pytest
-from pyaoc.check_parameters import check_day_number
+from pyaoc.check_parameters import check_day_number, check_iterations
 
+# check_day_number
 def test_check_day_number_type():
     assert check_day_number(1) == None
     assert check_day_number(25) == None
@@ -35,4 +36,32 @@ def test_check_day_number_no_args():
 def test_check_day_number_negative():
     with pytest.raises(SystemExit) as pytest_wrapped_e:
         check_day_number(-1)
+    assert pytest_wrapped_e.type == SystemExit
+
+# check_iterations
+    
+def test_check_iterations_type():
+    assert check_iterations(1) == None
+    with pytest.raises(SystemExit) as pytest_wrapped_e: # We expect a SystemExit
+        check_iterations("a")
+    assert pytest_wrapped_e.type == SystemExit
+    with pytest.raises(SystemExit) as pytest_wrapped_e: # We expect a SystemExit
+        check_iterations(1.5)
+    assert pytest_wrapped_e.type == SystemExit
+    with pytest.raises(SystemExit) as pytest_wrapped_e: # We expect a SystemExit
+        check_iterations(True)
+    assert pytest_wrapped_e.type == SystemExit
+
+def test_check_iterations_range():
+    assert check_iterations(1) == None
+    with pytest.raises(SystemExit) as pytest_wrapped_e: # We expect a SystemExit
+        check_iterations(0)
+    assert pytest_wrapped_e.type == SystemExit
+
+def test_check_iterations_no_args():
+    assert check_iterations() == None
+
+def test_check_iterations_negative():
+    with pytest.raises(SystemExit) as pytest_wrapped_e:
+        check_iterations(-1)
     assert pytest_wrapped_e.type == SystemExit

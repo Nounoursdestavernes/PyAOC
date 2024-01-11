@@ -77,7 +77,7 @@ def create_day(day_number: int = 1) -> None:
 
 
 
-def create_day_force(day_number: int = 1) -> int:
+def create_day_force(day_number: int = 1) -> None:
     """Create a new directory for a new day of Advent of Code. If the directory already exists, delete it and create a new one.
     
     Returns None if the creation is successful, else sys.exit.

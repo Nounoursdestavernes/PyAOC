@@ -65,7 +65,7 @@ def check_name_folder(name: str) -> None:
     :rtype: None
     """
     if len(name) != 5:
-        return sys.exit("Invalid name : name must be 5 characters long")
+        return sys.exit("Invalid name : name must be in following format : day{day_number}")
     
     day_number = name[3:]
     if name[:3] != 'day' and not day_number.isdigit():

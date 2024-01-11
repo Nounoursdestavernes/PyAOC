@@ -7,7 +7,7 @@ from pyaoc.check_parameters import check_day_number, check_iterations
 from importlib.util import spec_from_file_location, module_from_spec
 
 
-def benchmark_specific_day(day_number: int = 1, iterations: int = 1000) -> int:
+def benchmark_specific_day(day_number: int = 1, iterations: int = 1000) -> None:
     """Benchmark a specific day of Advent of Code.
 
     Returns None if the benchmark is successful, else sys.exit.

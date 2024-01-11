@@ -1,13 +1,10 @@
 # This file contains functions to get information about a day of Advent of Code
-import logging
 import os
 import requests
 import re
 import sys
 from pyaoc.check_parameters import check_day_number, check_year_number, check_part_number
 
-
-logging.basicConfig(level=logging.WARNING, format='%(levelname)s %(message)s')
 
 
 def get_day_name(day_number: int = 1, year_number: int = 2023) -> str:
@@ -44,8 +41,8 @@ def get_input(day_number: int = 1, year_number: int = 2023) -> None:
     :param int day_number: Number of the day. Must be between 1 and 25
     :param int year_number: Number of the year. Must be between 2015 and current year
 
-    :return: error
-    :rtype: int
+    :return: None
+    :rtype: None
     """
 
     check_day_number(day_number)
@@ -98,8 +95,8 @@ def submit(part_number: int = 1, day_number: int = 1, year_number: int = 2023, r
     :param int year_number: Number of the year. Must be between 2015 and current year
     :param int res: Result to submit
 
-    :return: error
-    :rtype: int
+    :return: None
+    :rtype: None
     """
 
     check_day_number(day_number)

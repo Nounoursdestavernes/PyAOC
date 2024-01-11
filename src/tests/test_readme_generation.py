@@ -1,23 +1,30 @@
 import os
+import pytest
 import shutil
 from pyaoc.readme_generation import generate_readme
 
 def test_readme_generation_year_out_of_range():
     shutil.copy("README.md", "save_README.md")
-    assert generate_readme(2010) == 1
-    assert generate_readme(-1) == 1
+    with pytest.raises(SystemExit) as pytest_wrapped_e:
+        generate_readme(2010)
+    assert pytest_wrapped_e.type == SystemExit
+    with pytest.raises(SystemExit) as pytest_wrapped_e:
+        generate_readme(-1)
+    assert pytest_wrapped_e.type == SystemExit
     shutil.copy("save_README.md", "README.md")
     os.unlink("save_README.md")
 
 def test_readme_generation_year_not_int():
     shutil.copy("README.md", "save_README.md")
-    assert generate_readme("a") == 1
+    with pytest.raises(SystemExit) as pytest_wrapped_e:
+        generate_readme("a")
+    assert pytest_wrapped_e.type == SystemExit
     shutil.copy("save_README.md", "README.md")
     os.unlink("save_README.md")
 
 def test_readme_generation_with_no_days():
     shutil.copy("README.md", "save_README.md")
-    assert generate_readme() == 0
+    assert generate_readme() == None
     shutil.copy("save_README.md", "README.md")
     os.unlink("save_README.md")
 
@@ -37,7 +44,7 @@ def test_readme_generation_with_days():
         with open(os.path.join(dir_name, "benchmark", "benchmark.txt"), "w") as f:
             pass
 
-    assert generate_readme() == 0
+    assert generate_readme() == None
     shutil.copy("save_README.md", "README.md")
     os.unlink("save_README.md")
 
